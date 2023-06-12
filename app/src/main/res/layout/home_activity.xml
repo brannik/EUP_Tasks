@@ -1,15 +1,93 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".HomeActivity"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/background"
+    tools:context=".HomeActivity">
 
-    <TextView
-        android:layout_centerInParent="true"
-        android:id="@+id/USER_DATA"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+    <LinearLayout
+        android:id="@+id/MENU_LAYOUT"
+        android:background="@color/dark_grey"
+        android:layout_width="match_parent"
+        android:layout_height="100sp"
+        android:orientation="horizontal">
 
+        <ImageView
+            android:layout_gravity="center"
+            android:layout_margin="10sp"
+            android:id="@+id/PROFILE_PIC"
+            android:layout_width="80sp"
+            android:layout_height="80sp"
+            android:src="@android:drawable/ic_dialog_alert"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="50sp"
+                android:orientation="vertical">
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+                    <TextView
+                        android:id="@+id/USER_DATA"
+                        android:layout_toStartOf="@id/BUTTON_LOGOUT"
+                        android:text="asdasd asd asd "
+                        android:textColor="@color/white"
+                        android:textSize="22sp"
+                        android:gravity="center"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"/>
+                    <androidx.appcompat.widget.AppCompatButton
+                        android:id="@+id/BUTTON_LOGOUT"
+                        android:text="Изход"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"/>
+                </RelativeLayout>
+
+
+            </LinearLayout>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/BTN_TASKS"
+                    android:text="Задачи"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+                <androidx.appcompat.widget.AppCompatButton
+                    android:layout_toEndOf="@id/BTN_TASKS"
+                    android:id="@+id/BTN_BLANKS"
+                    android:text="Карти"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+                <androidx.appcompat.widget.AppCompatButton
+                    android:layout_toEndOf="@id/BTN_BLANKS"
+                    android:id="@+id/BTN_SCHEDULE"
+                    android:text="График"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+                <androidx.appcompat.widget.AppCompatButton
+                    android:layout_toEndOf="@id/BTN_SCHEDULE"
+                    android:id="@+id/BTN_PROFILE"
+                    android:text="Профил"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+            </RelativeLayout>
+
+        </LinearLayout>
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_below="@id/MENU_LAYOUT"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    </RelativeLayout>
 </RelativeLayout>

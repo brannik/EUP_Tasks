@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "273568947870",
+    "project_id": "euptasks-ac603",
+    "storage_bucket": "euptasks-ac603.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:273568947870:android:785b280ebc62902f99e58f",
+        "android_client_info": {
+          "package_name": "com.example.tasks"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "273568947870-317tal9vqk4h2psqkn3dbnv5l7rnvbnu.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD5IVKkiPRESRoHT1MY-uvoUnYygZEPlOo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "273568947870-317tal9vqk4h2psqkn3dbnv5l7rnvbnu.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
