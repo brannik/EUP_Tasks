@@ -1,9 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Tasks</string>
     <string name="LoginTitle">Login</string>
     <string name="login_hint">username</string>
     <string name="password_hint">password</string>
     <string name="loginButtonText">Login</string>
-    <string name="registerButtonText">Register</string>
-    <string name="check_box_remember_me">Remember me</string>
 </resources>
