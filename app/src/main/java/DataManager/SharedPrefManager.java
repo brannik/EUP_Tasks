@@ -12,6 +12,7 @@ public class SharedPrefManager extends AppCompatActivity {
     public static final String STRING_FIELD_NAME = "NAME";
     public static final String STRING_FIELD_EMAIL = "EMAIL";
     public static final String INT_FIELD_WORK_POSITION = "WORK_POSITION";
+    public static final String STRING_FIELD_WORK_POSITION = "WORK_POSITION_NAME";
 
     // store user information here for easy access from other classes
     SharedPreferences sharedPreferences;
@@ -38,5 +39,10 @@ public class SharedPrefManager extends AppCompatActivity {
     }
     public int GetIntData(String INT_FIELD_NAME){
         return sharedPreferences.getInt(INT_FIELD_NAME,0);
+    }
+
+    public void AddPositionName(String _name){
+        myEdit.putString(STRING_FIELD_WORK_POSITION,_name);
+        myEdit.commit();
     }
 }

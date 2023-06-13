@@ -3,23 +3,23 @@ package DataManager;
 import com.google.firebase.database.Exclude;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
-public class WorkPositions {
-    public List<Position> positions;
+public class Position {
 
-    public WorkPositions(){
+    public String PositionName;
+
+    public Position(){
 
     }
-    public WorkPositions(List<Position> _position){
-        this.positions=_position;
+    public Position(String _name){
+        this.PositionName = _name;
     }
 
     @Exclude
     public Map<String, Object> toMap() {
         HashMap<String, Object> result = new HashMap<>();
-        result.put("POSITIONS",positions);
+        result.put("POSITION_NAME",PositionName);
         return result;
     }
 }

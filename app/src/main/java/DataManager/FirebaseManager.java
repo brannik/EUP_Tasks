@@ -1,6 +1,10 @@
 package DataManager;
 import android.content.Context;
 import android.util.Log;
+
+import androidx.annotation.NonNull;
+
+import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
@@ -21,6 +25,7 @@ public class FirebaseManager {
         prefManager = new SharedPrefManager(_context);
         context = _context;
     }
+    // add new user if logged in dont exsist in firebase and set it to basic access
     public void AddNewUser(String _id,String _displayName,String _email,int _wPosition){
         List<UserAccess> access = new ArrayList<>();
         access.add(new UserAccess(UserAccess.ACCESS_LEVEL_ENTRY,true,"Basic access, entry level"));
@@ -50,9 +55,28 @@ public class FirebaseManager {
         //Log.v(TAG,"CHECK-> " + dbId + " <> " + prefId);
         return prefId.equals(dbId);
     }
-    public String GetUserWorkPosition(int _posId){
-        // find position name from firebase
-        return "Position fom db " + _posId;
+    public void GetUserWorkPosition(int _posId){
+        DocumentReference drf = db.collection("work_positions").document("positions");
+        drf.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+            @Override
+            public void onSuccess(DocumentSnapshot documentSnapshot) {
+                WorkPositions pos = documentSnapshot.toObject(WorkPositions.class);
+                if(pos != null){
+                    prefManager.AddPositionName(pos.positions.get(_posId).PositionName);
+                    Log.v(TAG,"POS-> " + pos.positions.get(_posId).PositionName);
+                }
+            }
+        });
+
+    }
+
+    // create work position
+    public void CreateWorkPositions(){
+        List<Position> position = new ArrayList<>();
+        position.add(new Position("Миксер"));
+        position.add(new Position("Екструдер"));
+        WorkPositions positions = new WorkPositions(position);
+        db.collection("work_positions").document("positions").set(positions);
     }
 
 }

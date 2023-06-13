@@ -70,12 +70,14 @@ public class HomeActivity extends AppCompatActivity {
             // check if user is registered in firebase
             if(firebaseManager.CheckUser(id)){
                 firebaseManager.ReadUser(id); // get userdata from firebase and save it to sharedprefs
-                String position = firebaseManager.GetUserWorkPosition(prefManager.GetIntData(SharedPrefManager.INT_FIELD_WORK_POSITION));
+                firebaseManager.GetUserWorkPosition(prefManager.GetIntData(SharedPrefManager.INT_FIELD_WORK_POSITION));
+                String position = prefManager.GetStringData(SharedPrefManager.STRING_FIELD_WORK_POSITION);
                 StringBuilder sb = new StringBuilder();
                 sb.append(name);
                 sb.append("\nПозиция: ");
                 sb.append(position);
                 text.setText(sb.toString());
+                //firebaseManager.CreateWorkPositions();
                 //Log.v("FIREBASE","User was found. ");
             }else{
                 // add the user in DB
