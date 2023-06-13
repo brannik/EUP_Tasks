@@ -21,7 +21,7 @@ public class FirebaseManager {
         prefManager = new SharedPrefManager(_context);
         context = _context;
     }
-    public void AddNewUser(String _id,String _displayName,String _email,int _rank,String _wPosition){
+    public void AddNewUser(String _id,String _displayName,String _email,int _wPosition){
         List<UserAccess> access = new ArrayList<>();
         access.add(new UserAccess(UserAccess.ACCESS_LEVEL_ENTRY,true,"Basic access, entry level"));
         access.add(new UserAccess(UserAccess.ACCESS_LEVEL_NORMAL,false,"Normal user"));
@@ -39,9 +39,8 @@ public class FirebaseManager {
                 User user = documentSnapshot.toObject(User.class);
                 if (user != null) {
                     prefManager.SaveData(user); // save to sharedPrefs
-                    Log.v(TAG,user.WPosition);
+                    Log.v(TAG, String.valueOf(user.WPosition));
                 }
-
             }
         });
     }
@@ -50,6 +49,10 @@ public class FirebaseManager {
         String dbId = db.collection("users").document(_id).getId();
         //Log.v(TAG,"CHECK-> " + dbId + " <> " + prefId);
         return prefId.equals(dbId);
+    }
+    public String GetUserWorkPosition(int _posId){
+        // find position name from firebase
+        return "Position fom db " + _posId;
     }
 
 }

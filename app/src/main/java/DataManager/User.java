@@ -12,13 +12,13 @@ public class User {
     public String DisplayName;
     public String Email;
     public String ID;
-    public String WPosition;
+    public int WPosition;
     public List<UserAccess> access;
 
     public User(){
 
     }
-    public User(String _id,String _displayName,String _email,String _wPosition,@Nullable List<UserAccess> _access){
+    public User(String _id,String _displayName,String _email,int _wPosition,@Nullable List<UserAccess> _access){
         this.ID = _id;
         this.DisplayName = _displayName;
         this.Email = _email;
