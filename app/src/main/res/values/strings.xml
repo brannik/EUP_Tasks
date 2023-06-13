@@ -7,4 +7,6 @@
     <string name="registerButtonText">Register</string>
     <string name="check_box_remember_me">Remember me</string>
     <string name="server_client_id">140462563326-14jrfmpu3mjecg2ecnre2diqg89b0bln.apps.googleusercontent.com</string>
+    <string name="profile_pic_descr">profile picture</string>
+    <string name="btn_signout">Изход</string>
 </resources>

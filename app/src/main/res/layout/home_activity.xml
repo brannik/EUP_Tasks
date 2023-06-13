@@ -16,6 +16,7 @@
         android:orientation="horizontal">
 
         <ImageView
+            android:contentDescription="@string/profile_pic_descr"
             android:layout_gravity="center"
             android:layout_margin="10sp"
             android:id="@+id/PROFILE_PIC"
@@ -37,53 +38,32 @@
                     <TextView
                         android:id="@+id/USER_DATA"
                         android:layout_toStartOf="@id/BUTTON_LOGOUT"
-                        android:text="asdasd asd asd "
                         android:textColor="@color/white"
-                        android:textSize="22sp"
+                        android:textSize="20sp"
                         android:gravity="center"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"/>
                     <androidx.appcompat.widget.AppCompatButton
                         android:id="@+id/BUTTON_LOGOUT"
-                        android:text="Изход"
+                        android:text="@string/btn_signout"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentEnd="true"/>
                 </RelativeLayout>
-
-
             </LinearLayout>
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-                <androidx.appcompat.widget.AppCompatButton
-                    android:id="@+id/BTN_TASKS"
-                    android:text="Задачи"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"/>
-                <androidx.appcompat.widget.AppCompatButton
-                    android:layout_toEndOf="@id/BTN_TASKS"
-                    android:id="@+id/BTN_BLANKS"
-                    android:text="Карти"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"/>
-                <androidx.appcompat.widget.AppCompatButton
-                    android:layout_toEndOf="@id/BTN_BLANKS"
-                    android:id="@+id/BTN_SCHEDULE"
-                    android:text="График"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"/>
-                <androidx.appcompat.widget.AppCompatButton
-                    android:layout_toEndOf="@id/BTN_SCHEDULE"
-                    android:id="@+id/BTN_PROFILE"
-                    android:text="Профил"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"/>
-            </RelativeLayout>
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/SECOND_USER_INFO_TEXT"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"/>
+            </LinearLayout>
         </LinearLayout>
     </LinearLayout>
-
     <RelativeLayout
         android:layout_below="@id/MENU_LAYOUT"
         android:layout_width="match_parent"
