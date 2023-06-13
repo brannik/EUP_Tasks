@@ -40,6 +40,9 @@ public class SharedPrefManager extends AppCompatActivity {
     public int GetIntData(String INT_FIELD_NAME){
         return sharedPreferences.getInt(INT_FIELD_NAME,0);
     }
+    public boolean GetBooleanData(String BOOL_FIELD_NAME){
+        return sharedPreferences.getBoolean(BOOL_FIELD_NAME,false);
+    }
 
     public void AddPositionName(String _name){
         myEdit.putString(STRING_FIELD_WORK_POSITION,_name);

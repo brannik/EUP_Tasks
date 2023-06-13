@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    android:layout_marginHorizontal="20sp"
+    android:layout_marginVertical="100sp"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:background="@color/dark_grey"
+    android:layout_gravity="end"
+    android:gravity="center_horizontal"
+    android:orientation="vertical"
+    android:layout_width="300sp"
+    android:layout_height="500sp">
+
+    <ImageButton
+        android:layout_marginBottom="10sp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerInParent="true"
+        android:id="@+id/CLEAR_BTN"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@android:drawable/ic_menu_close_clear_cancel"/>
+    <ScrollView
+        android:id="@+id/NOTIFICATIONS_CONTENT"
+        android:scrollbars="none"
+        android:layout_marginHorizontal="5sp"
+        android:layout_marginVertical="10sp"
+        android:background="@color/background"
+        android:layout_above="@id/CLEAR_BTN"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/HEADER_TEXT">
+
+    </ScrollView>
+    <TextView
+        android:id="@+id/HEADER_TEXT"
+        android:layout_alignParentTop="true"
+        android:layout_gravity="center_horizontal"
+        android:gravity="center"
+        android:textColor="@color/white"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dip"
+        android:text="Notifications" />
+
+</RelativeLayout>

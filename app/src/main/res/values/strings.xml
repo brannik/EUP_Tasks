@@ -9,4 +9,11 @@
     <string name="server_client_id">140462563326-14jrfmpu3mjecg2ecnre2diqg89b0bln.apps.googleusercontent.com</string>
     <string name="profile_pic_descr">profile picture</string>
     <string name="btn_signout">Изход</string>
+    <string name="btn_notifications">Известия</string>
+    <string name="btn_tasks">Задачи</string>
+    <string name="btn_cards">Карти</string>
+    <string name="btn_shedule">График</string>
+    <string name="btn_proportions">Пропорции</string>
+    <string name="btn_moderator">Модератор</string>
+    <string name="btn_administrator">Администратор</string>
 </resources>

@@ -46,29 +46,93 @@
                     <androidx.appcompat.widget.AppCompatButton
                         android:id="@+id/BUTTON_LOGOUT"
                         android:text="@string/btn_signout"
-                        android:layout_width="wrap_content"
+                        android:layout_width="100sp"
                         android:layout_height="wrap_content"
                         android:layout_alignParentEnd="true"/>
                 </RelativeLayout>
             </LinearLayout>
 
-            <LinearLayout
+            <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="horizontal">
-
+                android:layout_height="match_parent">
                 <TextView
+                    android:layout_toStartOf="@id/BUTTON_NOTIFICATIONS"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:textColor="@color/white"
+                    android:textSize="15sp"
                     android:id="@+id/SECOND_USER_INFO_TEXT"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"/>
-            </LinearLayout>
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/BUTTON_NOTIFICATIONS"
+                    android:text="@string/btn_notifications"
+                    android:textSize="10sp"
+                    android:layout_width="100sp"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"/>
+            </RelativeLayout>
         </LinearLayout>
     </LinearLayout>
     <RelativeLayout
         android:layout_below="@id/MENU_LAYOUT"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+            <HorizontalScrollView
+                android:id="@+id/MENU_BAR"
+                android:scrollbars="none"
+                android:background="@color/dark_grey"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+                    <androidx.appcompat.widget.AppCompatButton
+                        android:id="@+id/BTN_MAIN_TASKS"
+                        android:layout_marginHorizontal="2sp"
+                        android:text="@string/btn_tasks"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"/>
+                    <androidx.appcompat.widget.AppCompatButton
+                        android:id="@+id/BTN_MAIN_CARDS"
+                        android:layout_marginHorizontal="2sp"
+                        android:text="@string/btn_cards"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"/>
+                    <androidx.appcompat.widget.AppCompatButton
+                        android:id="@+id/BTN_MAIN_SCHEDULE"
+                        android:layout_marginHorizontal="2sp"
+                        android:text="@string/btn_shedule"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"/>
+                    <androidx.appcompat.widget.AppCompatButton
+                        android:id="@+id/BTN_MAIN_PROPORTIONS"
+                        android:layout_marginHorizontal="2sp"
+                        android:text="@string/btn_proportions"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"/>
+                    <androidx.appcompat.widget.AppCompatButton
+                        android:id="@+id/BTN_MAIN_MCP"
+                        android:layout_marginHorizontal="2sp"
+                        android:text="@string/btn_moderator"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"/>
+                    <androidx.appcompat.widget.AppCompatButton
+                        android:id="@+id/BTN_MAIN_ACP"
+                        android:layout_marginHorizontal="2sp"
+                        android:text="@string/btn_administrator"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"/>
 
+                </LinearLayout>
+            </HorizontalScrollView>
+
+        <androidx.fragment.app.FragmentContainerView
+            android:layout_below="@id/MENU_BAR"
+            android:id="@+id/fragment_container_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
 
     </RelativeLayout>
 </RelativeLayout>

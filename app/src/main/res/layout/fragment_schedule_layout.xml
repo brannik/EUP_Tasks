@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    android:name="com.example.tasks.FragmentSchedule"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:background="@color/background"
+    android:layout_height="match_parent">
+    <TextView
+        android:layout_alignParentTop="true"
+        android:textSize="30sp"
+        android:textColor="@color/white"
+        android:id="@+id/HD"
+        android:gravity="center_horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Fragment Задачаи"/>
+    <androidx.appcompat.widget.AppCompatButton
+
+        android:id="@+id/TEST_BUTTON"
+        android:textSize="30sp"
+        android:layout_marginBottom="30sp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerInParent="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Generate"/>
+    <TextView
+        android:textColor="@color/white"
+        android:layout_below="@id/HD"
+        android:id="@+id/TEXT"
+        android:textSize="30sp"
+        android:gravity="center_horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
+</RelativeLayout>
