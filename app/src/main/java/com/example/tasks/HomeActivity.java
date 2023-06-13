@@ -60,16 +60,22 @@ public class HomeActivity extends AppCompatActivity {
         GoogleSignInAccount acct = GoogleSignIn.getLastSignedInAccount(this);
         if(acct!=null){
 
+            // data from google
             Uri photo = acct.getPhotoUrl();
             Picasso.get().load(photo).into(img);
             String name = acct.getDisplayName();
             String email = acct.getEmail();
             String id = acct.getId();
 
-            firebaseManager.ReadUser(id);
-
+            // check if user is registered in firebase
             if(firebaseManager.CheckUser(id)){
-                text.setText(name + "\nПозиция: " + prefManager.GetStringData(SharedPrefManager.STRING_FIELD_WORK_POSITION));
+                firebaseManager.ReadUser(id); // get userdata from firebase and save it to sharedprefs
+                String position = prefManager.GetStringData(SharedPrefManager.STRING_FIELD_WORK_POSITION);
+                StringBuilder sb = new StringBuilder();
+                sb.append(name);
+                sb.append("\nПозиция: ");
+                sb.append(position);
+                text.setText(sb.toString());
                 //Log.v("FIREBASE","User was found. ");
             }else{
                 // add the user in DB
