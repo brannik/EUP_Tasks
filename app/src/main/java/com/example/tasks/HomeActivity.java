@@ -2,6 +2,8 @@ package com.example.tasks;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
+import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -20,9 +22,15 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.squareup.picasso.Picasso;
 
+import DataManager.FirebaseManager;
+import DataManager.SharedPrefManager;
+import DataManager.User;
+
 
 public class HomeActivity extends AppCompatActivity {
 
+    FirebaseManager firebaseManager;
+    SharedPrefManager prefManager;
     GoogleSignInOptions gso;
     GoogleSignInClient gsc;
     @Override
@@ -43,21 +51,30 @@ public class HomeActivity extends AppCompatActivity {
         gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN).requestEmail().build();
         gsc = GoogleSignIn.getClient(this,gso);
 
+        prefManager = new SharedPrefManager(getApplicationContext());
         // firebase
-        FirebaseManager firebaseManager = new FirebaseManager();
 
+        firebaseManager = new FirebaseManager(getApplicationContext());
         TextView text = (TextView) findViewById(R.id.USER_DATA);
         ImageView img = (ImageView) findViewById(R.id.PROFILE_PIC);
         GoogleSignInAccount acct = GoogleSignIn.getLastSignedInAccount(this);
         if(acct!=null){
-            text.setText(acct.getDisplayName() + "\nПозиция: Миксер");
+
             Uri photo = acct.getPhotoUrl();
             Picasso.get().load(photo).into(img);
+            String name = acct.getDisplayName();
             String email = acct.getEmail();
             String id = acct.getId();
-            // check for exsisting user in firebase if not -> add new
 
-            // link email to firebase account
+            firebaseManager.ReadUser(id);
+
+            if(firebaseManager.CheckUser(id)){
+                text.setText(name + "\nПозиция: " + prefManager.GetStringData(SharedPrefManager.STRING_FIELD_WORK_POSITION));
+                //Log.v("FIREBASE","User was found. ");
+            }else{
+                // add the user in DB
+                firebaseManager.AddNewUser(id,name,email,4,"Миксер");
+            }
         }
 
     }
