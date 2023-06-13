@@ -5,6 +5,11 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QuerySnapshot;
+
+import java.util.ArrayList;
+import java.util.List;
+
 public class FirebaseManager {
     private Context context;
     private static final String TAG = "FIREBASE";
@@ -17,7 +22,13 @@ public class FirebaseManager {
         context = _context;
     }
     public void AddNewUser(String _id,String _displayName,String _email,int _rank,String _wPosition){
-        User user = new User(_id,_displayName,_email,_rank,_wPosition);
+        List<UserAccess> access = new ArrayList<>();
+        access.add(new UserAccess(UserAccess.ACCESS_LEVEL_ENTRY,true,"Basic access, entry level"));
+        access.add(new UserAccess(UserAccess.ACCESS_LEVEL_NORMAL,false,"Normal user"));
+        access.add(new UserAccess(UserAccess.ACCESS_LEVEL_ADVANCED,false,"Advanced user"));
+        access.add(new UserAccess(UserAccess.ACCESS_LEVEL_MODERATOR,false,"Moderator"));
+        access.add(new UserAccess(UserAccess.ACCESS_LEVEL_ADMINISTRATOR,false,"Administrator"));
+        User user = new User(_id,_displayName,_email,_wPosition,access);
         db.collection("users").document(_id).set(user);
     }
     public void ReadUser(String _id){
@@ -35,8 +46,10 @@ public class FirebaseManager {
         });
     }
     public boolean CheckUser(String _id){
-        db.collection("users").document(_id).get();
-        return true;
+        String prefId = prefManager.GetStringData(SharedPrefManager.STRING_FIELD_ID);
+        String dbId = db.collection("users").document(_id).getId();
+        //Log.v(TAG,"CHECK-> " + dbId + " <> " + prefId);
+        return prefId.equals(dbId);
     }
 
 }
