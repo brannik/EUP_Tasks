@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout
-    android:name="com.example.tasks.FragmentTasks"
+    android:name="com.example.tasks.FragmentAdministrator"
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:background="@color/background"
@@ -13,25 +13,17 @@
         android:gravity="center_horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Fragment Задачаи"/>
-    <androidx.appcompat.widget.AppCompatButton
+        android:text="Materials"/>
 
-        android:id="@+id/TEST_BUTTON"
-        android:textSize="30sp"
-        android:layout_marginBottom="30sp"
-        android:layout_alignParentBottom="true"
-        android:layout_centerInParent="true"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Generate"/>
-    <TextView
-        android:layout_above="@id/TEST_BUTTON"
-        android:textColor="@color/white"
+    <LinearLayout
+        android:orientation="vertical"
         android:layout_below="@id/HD"
         android:id="@+id/TEXT"
-        android:textSize="30sp"
         android:gravity="center_horizontal"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent">
+
+        
+    </LinearLayout>
 
 </RelativeLayout>

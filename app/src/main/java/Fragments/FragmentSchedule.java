@@ -1,4 +1,4 @@
-package com.example.tasks;
+package Fragments;
 
 import android.os.Bundle;
 import android.view.View;
@@ -9,14 +9,16 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import com.example.tasks.R;
+
 import java.util.Random;
 
 import DataManager.SharedPrefManager;
 
-public class FragmentModerator extends Fragment {
+public class FragmentSchedule extends Fragment {
     SharedPrefManager prefManager;
-    public FragmentModerator() {
-        super(R.layout.fragment_moderator_layout);
+    public FragmentSchedule() {
+        super(R.layout.fragment_schedule_layout);
 
     }
 
@@ -28,7 +30,7 @@ public class FragmentModerator extends Fragment {
         TextView txtTop = (TextView) view.findViewById(R.id.HD);
         Button btn = (Button) view.findViewById(R.id.TEST_BUTTON);
         String position = prefManager.GetStringData(SharedPrefManager.STRING_FIELD_WORK_POSITION);
-        txtTop.setText("Fragment: Модератор: " + position);
+        txtTop.setText("Fragment: График за: " + position);
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

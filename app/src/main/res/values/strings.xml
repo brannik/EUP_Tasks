@@ -16,4 +16,5 @@
     <string name="btn_proportions">Пропорции</string>
     <string name="btn_moderator">Модератор</string>
     <string name="btn_administrator">Администратор</string>
+    <string name="btn_materials">Материали</string>
 </resources>

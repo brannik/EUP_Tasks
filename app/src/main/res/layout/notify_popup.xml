@@ -29,6 +29,7 @@
         android:layout_height="match_parent"
         android:layout_below="@id/HEADER_TEXT">
 
+
     </ScrollView>
     <TextView
         android:id="@+id/HEADER_TEXT"
@@ -39,6 +40,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dip"
-        android:text="Notifications" />
+        android:text="Известия" />
 
 </RelativeLayout>

@@ -5,8 +5,6 @@ import static DataManager.UserAccess.ACCESS_LEVEL_ENTRY;
 import static DataManager.UserAccess.ACCESS_LEVEL_MODERATOR;
 import static DataManager.UserAccess.ACCESS_LEVEL_NORMAL;
 
-import android.app.FragmentManager;
-import android.app.FragmentTransaction;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
@@ -17,7 +15,6 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.PopupWindow;
 import android.widget.TextView;
@@ -35,6 +32,13 @@ import com.squareup.picasso.Picasso;
 
 import DataManager.FirebaseManager;
 import DataManager.SharedPrefManager;
+import Fragments.FragmentAdministrator;
+import Fragments.FragmentCards;
+import Fragments.FragmentMaterials;
+import Fragments.FragmentModerator;
+import Fragments.FragmentProportions;
+import Fragments.FragmentSchedule;
+import Fragments.FragmentTasks;
 
 
 public class HomeActivity extends AppCompatActivity {
@@ -56,6 +60,7 @@ public class HomeActivity extends AppCompatActivity {
                 .add(R.id.fragment_container_view, FragmentTasks.class, null)
                 .commit();
         setContentView(R.layout.home_activity);
+        
         AppCompatButton btnLogOut = (AppCompatButton) findViewById(R.id.BUTTON_LOGOUT);
         btnLogOut.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -138,17 +143,20 @@ public class HomeActivity extends AppCompatActivity {
         isModerator = prefManager.GetBooleanData(ACCESS_LEVEL_MODERATOR);
         isAdministrator = prefManager.GetBooleanData(ACCESS_LEVEL_ADMINISTRATOR);
 
-        AppCompatButton btnTasks,btnCards,btnSchedule,btnProportions,btnMcp,btnAcp;
+        AppCompatButton btnTasks,btnCards,btnSchedule,btnMats,btnProportions,btnMcp,btnAcp;
         btnTasks = (AppCompatButton) findViewById(R.id.BTN_MAIN_TASKS);
         btnCards = (AppCompatButton) findViewById(R.id.BTN_MAIN_CARDS);
         btnSchedule = (AppCompatButton) findViewById(R.id.BTN_MAIN_SCHEDULE);
         btnProportions = (AppCompatButton) findViewById(R.id.BTN_MAIN_PROPORTIONS);
+        btnMats = (AppCompatButton) findViewById(R.id.BTN_MAIN_MATERIALS);
         btnMcp = (AppCompatButton) findViewById(R.id.BTN_MAIN_MCP);
         btnAcp = (AppCompatButton) findViewById(R.id.BTN_MAIN_ACP);
+
         btnTasks.setVisibility(View.GONE);
         btnSchedule.setVisibility(View.GONE);
         btnCards.setVisibility(View.GONE);
         btnProportions.setVisibility(View.GONE);
+        btnMats.setVisibility(View.GONE);
         btnMcp.setVisibility(View.GONE);
         btnAcp.setVisibility(View.GONE);
         btnTasks.setOnClickListener(new View.OnClickListener() {
@@ -184,6 +192,15 @@ public class HomeActivity extends AppCompatActivity {
                 getSupportFragmentManager().beginTransaction()
                         .setReorderingAllowed(true)
                         .add(R.id.fragment_container_view, FragmentProportions.class, null)
+                        .commit();
+            }
+        });
+        btnMats.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getSupportFragmentManager().beginTransaction()
+                        .setReorderingAllowed(true)
+                        .add(R.id.fragment_container_view, FragmentMaterials.class, null)
                         .commit();
             }
         });
@@ -229,6 +246,7 @@ public class HomeActivity extends AppCompatActivity {
             btnSchedule.setVisibility(View.VISIBLE);
             btnCards.setVisibility(View.VISIBLE);
             btnProportions.setVisibility(View.VISIBLE);
+            btnMats.setVisibility(View.VISIBLE);
             btnMcp.setVisibility(View.VISIBLE);
         }
         if (isAdministrator) {
@@ -237,6 +255,7 @@ public class HomeActivity extends AppCompatActivity {
             btnSchedule.setVisibility(View.VISIBLE);
             btnCards.setVisibility(View.VISIBLE);
             btnProportions.setVisibility(View.VISIBLE);
+            btnMats.setVisibility(View.VISIBLE);
             btnMcp.setVisibility(View.VISIBLE);
             btnAcp.setVisibility(View.VISIBLE);
         }

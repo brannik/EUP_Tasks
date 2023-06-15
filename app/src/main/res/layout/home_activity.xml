@@ -113,6 +113,12 @@
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"/>
                     <androidx.appcompat.widget.AppCompatButton
+                        android:id="@+id/BTN_MAIN_MATERIALS"
+                        android:layout_marginHorizontal="2sp"
+                        android:text="@string/btn_materials"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"/>
+                    <androidx.appcompat.widget.AppCompatButton
                         android:id="@+id/BTN_MAIN_MCP"
                         android:layout_marginHorizontal="2sp"
                         android:text="@string/btn_moderator"
