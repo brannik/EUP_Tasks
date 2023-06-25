@@ -16,7 +16,6 @@
         android:orientation="horizontal">
 
         <ImageView
-            android:contentDescription="@string/profile_pic_descr"
             android:layout_gravity="center"
             android:layout_margin="10sp"
             android:id="@+id/PROFILE_PIC"

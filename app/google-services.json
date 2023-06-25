@@ -1,6 +1,7 @@
 {
   "project_info": {
     "project_number": "273568947870",
+    "firebase_url": "https://euptasks-ac603-default-rtdb.europe-west1.firebasedatabase.app",
     "project_id": "euptasks-ac603",
     "storage_bucket": "euptasks-ac603.appspot.com"
   },
@@ -13,6 +14,14 @@
         }
       },
       "oauth_client": [
+        {
+          "client_id": "273568947870-jtol90c0h96b3q1p1ho8p4kjt0lqridk.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.tasks",
+            "certificate_hash": "c85bcca3a611a354d673371f139e37fc550fbfbf"
+          }
+        },
         {
           "client_id": "273568947870-317tal9vqk4h2psqkn3dbnv5l7rnvbnu.apps.googleusercontent.com",
           "client_type": 3

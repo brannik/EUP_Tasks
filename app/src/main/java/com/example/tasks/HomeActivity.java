@@ -1,14 +1,15 @@
 package com.example.tasks;
-import static DataManager.UserAccess.ACCESS_LEVEL_ADMINISTRATOR;
-import static DataManager.UserAccess.ACCESS_LEVEL_ADVANCED;
-import static DataManager.UserAccess.ACCESS_LEVEL_ENTRY;
-import static DataManager.UserAccess.ACCESS_LEVEL_MODERATOR;
-import static DataManager.UserAccess.ACCESS_LEVEL_NORMAL;
+import static com.example.tasks.DataManager.UserAccess.ACCESS_LEVEL_ADMINISTRATOR;
+import static com.example.tasks.DataManager.UserAccess.ACCESS_LEVEL_ADVANCED;
+import static com.example.tasks.DataManager.UserAccess.ACCESS_LEVEL_ENTRY;
+import static com.example.tasks.DataManager.UserAccess.ACCESS_LEVEL_MODERATOR;
+import static com.example.tasks.DataManager.UserAccess.ACCESS_LEVEL_NORMAL;
 
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,27 +19,25 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.PopupWindow;
 import android.widget.TextView;
-import androidx.annotation.NonNull;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
 
+import com.example.tasks.Fragments.FragmentAdministrator;
+import com.example.tasks.Fragments.FragmentCards;
+import com.example.tasks.Fragments.FragmentMaterials;
+import com.example.tasks.Fragments.FragmentModerator;
+import com.example.tasks.Fragments.FragmentProportions;
+import com.example.tasks.Fragments.FragmentSchedule;
+import com.example.tasks.Fragments.FragmentTasks;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
 import com.squareup.picasso.Picasso;
 
-import DataManager.FirebaseManager;
-import DataManager.SharedPrefManager;
-import Fragments.FragmentAdministrator;
-import Fragments.FragmentCards;
-import Fragments.FragmentMaterials;
-import Fragments.FragmentModerator;
-import Fragments.FragmentProportions;
-import Fragments.FragmentSchedule;
-import Fragments.FragmentTasks;
+import com.example.tasks.DataManager.FirebaseManager;
+import com.example.tasks.DataManager.SharedPrefManager;
 
 
 public class HomeActivity extends AppCompatActivity {
@@ -62,24 +61,16 @@ public class HomeActivity extends AppCompatActivity {
         setContentView(R.layout.home_activity);
         
         AppCompatButton btnLogOut = (AppCompatButton) findViewById(R.id.BUTTON_LOGOUT);
-        btnLogOut.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                SignOut();
-            }
-        });
+        btnLogOut.setOnClickListener(view -> SignOut());
 
         Button btnNotify = (Button) findViewById(R.id.BUTTON_NOTIFICATIONS);
-        btnNotify.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        btnNotify.setOnClickListener(view -> {
+            LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
-                PopupWindow pw = new PopupWindow(inflater.inflate(R.layout.notify_popup, null, false),600,1000, true);
+            PopupWindow pw = new PopupWindow(inflater.inflate(R.layout.notify_popup, null, false),600,1000, true);
 
-                pw.showAtLocation(findViewById(R.id.BUTTON_NOTIFICATIONS), Gravity.CENTER, 100, -150);
+            pw.showAtLocation(findViewById(R.id.BUTTON_NOTIFICATIONS), Gravity.CENTER, 100, -150);
 
-            }
         });
 
         gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN).requestEmail().build();
@@ -87,11 +78,11 @@ public class HomeActivity extends AppCompatActivity {
 
         prefManager = new SharedPrefManager(getApplicationContext());
         // firebase
-
         firebaseManager = new FirebaseManager(getApplicationContext());
+
         TextView text = (TextView) findViewById(R.id.USER_DATA);
         ImageView img = (ImageView) findViewById(R.id.PROFILE_PIC);
-        GoogleSignInAccount acct = GoogleSignIn.getLastSignedInAccount(this);
+        GoogleSignInAccount acct = GoogleSignIn.getLastSignedInAccount(getApplicationContext());
         if(acct!=null){
 
             // data from google
@@ -103,13 +94,15 @@ public class HomeActivity extends AppCompatActivity {
 
             // check if user is registered in firebase
             if(firebaseManager.CheckUser(id)){
+                firebaseManager.ReadUser(id); // get userdata from firebase and save it to sharedprefs
                 try {
-                    Thread.sleep(50);
+                    Thread.sleep(100);
                 } catch (InterruptedException e) {
                     throw new RuntimeException(e);
                 }
-                firebaseManager.ReadUser(id); // get userdata from firebase and save it to sharedprefs
-                firebaseManager.GetUserWorkPosition(prefManager.GetIntData(SharedPrefManager.INT_FIELD_WORK_POSITION));
+
+                int bb = prefManager.GetIntData(SharedPrefManager.INT_FIELD_WORK_POSITION);
+                firebaseManager.GetUserWorkPosition(bb);
                 String position = prefManager.GetStringData(SharedPrefManager.STRING_FIELD_WORK_POSITION);
                 StringBuilder sb = new StringBuilder();
                 sb.append(name);
@@ -127,12 +120,9 @@ public class HomeActivity extends AppCompatActivity {
 
     }
     private void SignOut(){
-        gsc.signOut().addOnCompleteListener(new OnCompleteListener<Void>() {
-            @Override
-            public void onComplete(@NonNull Task<Void> task) {
-                finish();
-                startActivity(new Intent(HomeActivity.this,LoginActivity.class));
-            }
+        gsc.signOut().addOnCompleteListener(task -> {
+            finish();
+            startActivity(new Intent(HomeActivity.this,LoginActivity.class));
         });
     }
     private void CheckPermissions(){ // level access the buttons
@@ -144,6 +134,7 @@ public class HomeActivity extends AppCompatActivity {
         isAdministrator = prefManager.GetBooleanData(ACCESS_LEVEL_ADMINISTRATOR);
 
         AppCompatButton btnTasks,btnCards,btnSchedule,btnMats,btnProportions,btnMcp,btnAcp;
+
         btnTasks = (AppCompatButton) findViewById(R.id.BTN_MAIN_TASKS);
         btnCards = (AppCompatButton) findViewById(R.id.BTN_MAIN_CARDS);
         btnSchedule = (AppCompatButton) findViewById(R.id.BTN_MAIN_SCHEDULE);
@@ -159,69 +150,38 @@ public class HomeActivity extends AppCompatActivity {
         btnMats.setVisibility(View.GONE);
         btnMcp.setVisibility(View.GONE);
         btnAcp.setVisibility(View.GONE);
-        btnTasks.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                    getSupportFragmentManager().beginTransaction()
-                            .setReorderingAllowed(true)
-                            .add(R.id.fragment_container_view, FragmentTasks.class, null)
-                            .commit();
-            }
+        btnTasks.setOnClickListener(view -> {
+            getSupportFragmentManager().beginTransaction()
+                    .setReorderingAllowed(true)
+                    .add(R.id.fragment_container_view, FragmentTasks.class, null)
+                    .commit();
         });
-        btnCards.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                getSupportFragmentManager().beginTransaction()
-                        .setReorderingAllowed(true)
-                        .add(R.id.fragment_container_view, FragmentCards.class, null)
-                        .commit();
-            }
+        btnCards.setOnClickListener(view -> {
+            getSupportFragmentManager().beginTransaction()
+                    .setReorderingAllowed(true)
+                    .add(R.id.fragment_container_view, FragmentCards.class, null)
+                    .commit();
         });
-        btnSchedule.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                getSupportFragmentManager().beginTransaction()
-                        .setReorderingAllowed(true)
-                        .add(R.id.fragment_container_view, FragmentSchedule.class, null)
-                        .commit();
-            }
-        });
-        btnProportions.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                getSupportFragmentManager().beginTransaction()
-                        .setReorderingAllowed(true)
-                        .add(R.id.fragment_container_view, FragmentProportions.class, null)
-                        .commit();
-            }
-        });
-        btnMats.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                getSupportFragmentManager().beginTransaction()
-                        .setReorderingAllowed(true)
-                        .add(R.id.fragment_container_view, FragmentMaterials.class, null)
-                        .commit();
-            }
-        });
-        btnMcp.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                getSupportFragmentManager().beginTransaction()
-                        .setReorderingAllowed(true)
-                        .add(R.id.fragment_container_view, FragmentModerator.class, null)
-                        .commit();
-            }
-        });
-        btnAcp.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                getSupportFragmentManager().beginTransaction()
-                        .setReorderingAllowed(true)
-                        .add(R.id.fragment_container_view, FragmentAdministrator.class, null)
-                        .commit();
-            }
-        });
+        btnSchedule.setOnClickListener(view -> getSupportFragmentManager().beginTransaction()
+                .setReorderingAllowed(true)
+                .add(R.id.fragment_container_view, FragmentSchedule.class, null)
+                .commit());
+        btnProportions.setOnClickListener(view -> getSupportFragmentManager().beginTransaction()
+                .setReorderingAllowed(true)
+                .add(R.id.fragment_container_view, FragmentProportions.class, null)
+                .commit());
+        btnMats.setOnClickListener(v -> getSupportFragmentManager().beginTransaction()
+                .setReorderingAllowed(true)
+                .add(R.id.fragment_container_view, FragmentMaterials.class, null)
+                .commit());
+        btnMcp.setOnClickListener(view -> getSupportFragmentManager().beginTransaction()
+                .setReorderingAllowed(true)
+                .add(R.id.fragment_container_view, FragmentModerator.class, null)
+                .commit());
+        btnAcp.setOnClickListener(view -> getSupportFragmentManager().beginTransaction()
+                .setReorderingAllowed(true)
+                .add(R.id.fragment_container_view, FragmentAdministrator.class, null)
+                .commit());
 
         String level = "";
         if(isEntry) {
@@ -263,5 +223,11 @@ public class HomeActivity extends AppCompatActivity {
         TextView secondUserText = (TextView) findViewById(R.id.SECOND_USER_INFO_TEXT);
         secondUserText.setText(level);
 
+
+
+    }
+
+    private void test(String btn){
+        Log.v("DEBUG","DEBUG-> " + btn);
     }
 }

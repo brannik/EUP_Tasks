@@ -1,4 +1,4 @@
-package Fragments;
+package com.example.tasks.Fragments;
 
 import android.os.Bundle;
 import android.view.View;
@@ -7,20 +7,18 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
 import com.example.tasks.R;
 
-import java.util.Objects;
 import java.util.Random;
 
-import DataManager.SharedPrefManager;
+import com.example.tasks.DataManager.SharedPrefManager;
 
-public class FragmentTasks extends Fragment {
+public class FragmentSchedule extends Fragment {
     SharedPrefManager prefManager;
-    public FragmentTasks() {
-        super(R.layout.fragment_tasks_layout);
+    public FragmentSchedule() {
+        super(R.layout.fragment_schedule_layout);
 
     }
 
@@ -32,7 +30,7 @@ public class FragmentTasks extends Fragment {
         TextView txtTop = (TextView) view.findViewById(R.id.HD);
         Button btn = (Button) view.findViewById(R.id.TEST_BUTTON);
         String position = prefManager.GetStringData(SharedPrefManager.STRING_FIELD_WORK_POSITION);
-        txtTop.setText("Fragment: Задачи за: " + position);
+        txtTop.setText("Fragment: График за: " + position);
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

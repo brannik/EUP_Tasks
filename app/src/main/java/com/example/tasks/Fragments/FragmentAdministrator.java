@@ -1,4 +1,4 @@
-package Fragments;
+package com.example.tasks.Fragments;
 
 import android.os.Bundle;
 import android.view.View;
@@ -9,12 +9,12 @@ import androidx.fragment.app.Fragment;
 
 import com.example.tasks.R;
 
-import DataManager.SharedPrefManager;
+import com.example.tasks.DataManager.SharedPrefManager;
 
-public class FragmentMaterials extends Fragment {
+public class FragmentAdministrator extends Fragment {
     SharedPrefManager prefManager;
-    public FragmentMaterials() {
-        super(R.layout.fragment_materials_layout);
+    public FragmentAdministrator() {
+        super(R.layout.fragment_administrator_layout);
 
     }
 

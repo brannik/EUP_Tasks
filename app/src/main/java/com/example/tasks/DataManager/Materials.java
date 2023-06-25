@@ -1,4 +1,4 @@
-package DataManager;
+package com.example.tasks.DataManager;
 
 public class Materials {
     public int MaterialId;

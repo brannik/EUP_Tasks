@@ -1,9 +1,7 @@
-package Fragments;
+package com.example.tasks.Fragments;
 
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -11,14 +9,12 @@ import androidx.fragment.app.Fragment;
 
 import com.example.tasks.R;
 
-import java.util.Random;
+import com.example.tasks.DataManager.SharedPrefManager;
 
-import DataManager.SharedPrefManager;
-
-public class FragmentAdministrator extends Fragment {
+public class FragmentMaterials extends Fragment {
     SharedPrefManager prefManager;
-    public FragmentAdministrator() {
-        super(R.layout.fragment_administrator_layout);
+    public FragmentMaterials() {
+        super(R.layout.fragment_materials_layout);
 
     }
 

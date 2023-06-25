@@ -1,4 +1,4 @@
-package Fragments;
+package com.example.tasks.Fragments;
 
 import android.os.Bundle;
 import android.view.View;
@@ -13,12 +13,12 @@ import com.example.tasks.R;
 
 import java.util.Random;
 
-import DataManager.SharedPrefManager;
+import com.example.tasks.DataManager.SharedPrefManager;
 
-public class FragmentProportions extends Fragment {
+public class FragmentModerator extends Fragment {
     SharedPrefManager prefManager;
-    public FragmentProportions() {
-        super(R.layout.fragment_proportions_layout);
+    public FragmentModerator() {
+        super(R.layout.fragment_moderator_layout);
 
     }
 
@@ -30,7 +30,7 @@ public class FragmentProportions extends Fragment {
         TextView txtTop = (TextView) view.findViewById(R.id.HD);
         Button btn = (Button) view.findViewById(R.id.TEST_BUTTON);
         String position = prefManager.GetStringData(SharedPrefManager.STRING_FIELD_WORK_POSITION);
-        txtTop.setText("Fragment: Пропорции за: " + position);
+        txtTop.setText("Fragment: Модератор: " + position);
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

@@ -1,7 +1,6 @@
-package DataManager;
+package com.example.tasks.DataManager;
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.util.Log;
 
 import androidx.appcompat.app.AppCompatActivity;
 

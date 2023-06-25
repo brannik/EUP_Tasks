@@ -1,15 +1,11 @@
-package DataManager;
+package com.example.tasks.DataManager;
 import android.content.Context;
 import android.util.Log;
 
-import androidx.annotation.NonNull;
-
-import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -50,10 +46,11 @@ public class FirebaseManager {
         });
     }
     public boolean CheckUser(String _id){
-        String prefId = prefManager.GetStringData(SharedPrefManager.STRING_FIELD_ID);
+        String prefId = prefManager.GetStringData(SharedPrefManager.STRING_FIELD_ID); //??????
         String dbId = db.collection("users").document(_id).getId();
-        //Log.v(TAG,"CHECK-> " + dbId + " <> " + prefId);
+        Log.v(TAG,"CHECK-> " + dbId + " <> " + prefId);
         return prefId.equals(dbId);
+        //return true;
     }
     public void GetUserWorkPosition(int _posId){
         DocumentReference drf = db.collection("work_positions").document("positions");
